@@ -88,7 +88,7 @@ namespace TimerCacheNode.Services
             //childActor = Props.Create<ChildActor>();
             //clusterActorSystem.ActorOf(childActor, "child");
         }
-
+            
         public void StopClusterNode()
         {
             var cluster = Cluster.Get(clusterActorSystem);
