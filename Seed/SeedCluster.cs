@@ -5,7 +5,7 @@ using Shared;
 
 namespace Seed
 {
-    internal class SeedCluster : Cluster
+    internal class SeedCluster : ClusterNode
     {
         public SeedCluster(Config config)
             : base(config)

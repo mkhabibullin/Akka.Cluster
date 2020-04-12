@@ -249,7 +249,6 @@
   <ItemGroup>
     <Compile Include="NodeCluster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AssetsCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">

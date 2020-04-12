@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Node.Services
+namespace NodeService.Services
 {
     internal class AssetsCache
     {
-        public static AssetsCache Instance = new AssetsCache();
+        //public static AssetsCache Instance = new AssetsCache();
 
         public static List<int> GlobalItems;
 
         public List<int> Items = new List<int>();
 
         public List<int> RegisteredNodes = new List<int>();
-
-        public List<int> RegisteredSeeds = new List<int>();
 
         public int NodeId { get; private set; }
 
@@ -33,16 +31,23 @@ namespace Node.Services
         public void SetNodeId(int id)
         {
             NodeId = id;
+            AddRegisteredNodes(id);
         }
 
         public void AddNode(int id)
         {
-            RegisteredNodes.Add(id);
-            Console.WriteLine($"Registered nodes = {string.Join(",", RegisteredNodes)}");
-
+            AddRegisteredNodes(id);
             CurrentNodeIndex = RegisteredNodes.OrderBy(v => v).ToList().FindIndex(v => v == NodeId);
 
             ReLoad();
+        }
+
+        protected void AddRegisteredNodes(int id)
+        {
+            if (!RegisteredNodes.Contains(id))
+            {
+                RegisteredNodes.Add(id);
+            }
         }
 
         public void RemoveNode(int id)
@@ -50,8 +55,6 @@ namespace Node.Services
             RegisteredNodes.Remove(id);
 
             CurrentNodeIndex = RegisteredNodes.OrderBy(v => v).ToList().FindIndex(v => v == NodeId);
-
-            Console.WriteLine($"The left nodes = {string.Join(",", RegisteredNodes)}");
 
             ReLoad();
         }
@@ -61,20 +64,6 @@ namespace Node.Services
             RegisteredNodes.Clear();
             ReLoad();
             IsStopped = true;
-        }
-
-        public void AddSeedNode(int id)
-        {
-            RegisteredSeeds.Add(id);
-
-            Console.WriteLine($"Registered seeds = {string.Join(",", RegisteredNodes)}");
-        }
-
-        public void RemoveSeedNode(int id)
-        {
-            RegisteredSeeds.Remove(id);
-
-            Console.WriteLine($"The left seeds = {string.Join(",", RegisteredNodes)}");
         }
 
         public void ReLoad()
@@ -91,6 +80,12 @@ namespace Node.Services
                     }
                 }
             }
+        }
+
+        public void Print()
+        {
+            var items = string.Join(",", Items);
+            Console.WriteLine(items);
         }
     }
 }

@@ -15,8 +15,6 @@ namespace Shared.Actors
 
         protected readonly IObserver<Messages.ClusterEvent> _observer;
 
-        private long CurrentId;
-
         public ClusterListenerActor(IObserver<Messages.ClusterEvent> observer)
         {
             _observer = observer;
@@ -49,11 +47,8 @@ namespace Shared.Actors
                 Log.Info("Member is Up: {0}", mem.Member);
                 if (mem.Member.HasRole(Roles.Node))
                 {
-                    if (CurrentId != mem.Member.UniqueAddress.Uid)
-                    {
-                        _observer?.OnNext(new Messages.ClusterEvent(mem.Member.UniqueAddress.Uid, ClusterEventType.MemberUp));
-                        //AssetsCache.Instance.AddNode(mem.Member.UniqueAddress.Uid);
-                    }
+                    _observer?.OnNext(new Messages.ClusterEvent(mem.Member.UniqueAddress.Uid, ClusterEventType.MemberUp));
+                    //AssetsCache.Instance.AddNode(mem.Member.UniqueAddress.Uid);
                 }
                 else
                 {
@@ -120,8 +115,7 @@ namespace Shared.Actors
                 var m = (ClusterEvent.IMemberEvent)message;
                 if (Cluster.SelfMember.UniqueAddress.Uid == m.Member.UniqueAddress.Uid)
                 {
-                    CurrentId = m.Member.UniqueAddress.Uid;
-                    _observer?.OnNext(new Messages.ClusterEvent(CurrentId, ClusterEventType.Up));
+                    _observer?.OnNext(new Messages.ClusterEvent(m.Member.UniqueAddress.Uid, ClusterEventType.Up));
                     //AssetsCache.Instance.SetNodeId(m.Member.UniqueAddress.Uid);
                 }
             }

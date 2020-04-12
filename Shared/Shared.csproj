@@ -251,7 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\ClusterListenerActor.cs" />
-    <Compile Include="Cluster.cs" />
+    <Compile Include="ClusterNode.cs" />
     <Compile Include="ConfigBuilder\ClusterConfigBuilder.cs" />
     <Compile Include="ConfigBuilder\IClusterConfigBuilder.cs" />
     <Compile Include="Consts.cs" />

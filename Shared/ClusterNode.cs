@@ -9,7 +9,7 @@ using static Shared.Consts;
 
 namespace Shared
 {
-    internal abstract class Cluster
+    internal class ClusterNode
     {
         protected Akka.Cluster.Cluster _cluster;
         protected ActorSystem _actorSystem;
@@ -18,17 +18,17 @@ namespace Shared
         private bool isRestarting;
         public virtual string Name => ClusterNameDefault;
 
-        public Cluster(Config config)
+        public ClusterNode(Config config)
         {
             if (config == null)
             {
-                throw new Exception($"{nameof(Cluster)} failed to start: Config is not defined");
+                throw new Exception($"{nameof(ClusterNode)} failed to start: Config is not defined");
             }
 
             _config = config;
         }
 
-        public Cluster(ISubject<Messages.ClusterEvent> clusterEvents, Config config)
+        public ClusterNode(ISubject<Messages.ClusterEvent> clusterEvents, Config config)
             : this(config)
         {
             _clusterEvents = clusterEvents;
@@ -41,6 +41,8 @@ namespace Shared
             _cluster = Akka.Cluster.Cluster.Get(_actorSystem);
 
             BuildActorSystem();
+
+            Console.WriteLine("Started");
         }
 
         public virtual void Stop()
@@ -61,6 +63,8 @@ namespace Shared
         protected virtual async void MemberRemoved()
         {
             await _actorSystem.Terminate();
+
+            Console.WriteLine("Finished");
 
             if (isRestarting) Start();
             isRestarting = false;

@@ -4,11 +4,11 @@ namespace Shared.Messages
 {
     internal class ClusterEvent
     {
-        public long NodeId { get; set; }
+        public int NodeId { get; set; }
 
         public ClusterEventType Type { get; set; }
 
-        public ClusterEvent(long nodeId, ClusterEventType type)
+        public ClusterEvent(int nodeId, ClusterEventType type)
         {
             NodeId = nodeId;
             Type = type;
