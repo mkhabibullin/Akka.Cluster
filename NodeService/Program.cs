@@ -118,11 +118,9 @@ namespace NodeService
                         exit = true;
                         break;
                     case 'a':
-                        Console.WriteLine($"1");
                         cache.Print();
                         break;
                     case 'b':
-                        Console.WriteLine($"2");
                         cache2.Print();
                         break;
                     default:
