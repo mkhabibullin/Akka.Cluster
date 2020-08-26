@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeService", "NodeService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeedService", "SeedService\SeedService.csproj", "{0F4FB81C-97B4-49E2-B836-24CF5267F3DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimersCluster", "TimersClusterCore\TimersCluster.csproj", "{FE806981-70DD-4DDD-AE40-29FFE2CD7E1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{0F4FB81C-97B4-49E2-B836-24CF5267F3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4FB81C-97B4-49E2-B836-24CF5267F3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4FB81C-97B4-49E2-B836-24CF5267F3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE806981-70DD-4DDD-AE40-29FFE2CD7E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE806981-70DD-4DDD-AE40-29FFE2CD7E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE806981-70DD-4DDD-AE40-29FFE2CD7E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE806981-70DD-4DDD-AE40-29FFE2CD7E1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
